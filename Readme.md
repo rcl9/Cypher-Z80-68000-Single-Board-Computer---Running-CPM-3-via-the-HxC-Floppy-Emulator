@@ -5,11 +5,11 @@ This file explains how to boot from CP/M-3 via the HxC Floppy Emulator attached 
 A much longer and more complex explanation details how to generate a "cyphboot.img" disk image file from the original CP/M-3 Z80 source files .
 
 <div style="text-align:center">
-<img src="/Images/Motel Computers Z80-68000 board.jpg" alt="" style="width:70%; height:auto;">
+<img src="/Images/Lotharek SD Floppy Emulator with Motel Computers SBC.jpg" alt="" style="width:70%; height:auto;">
 </div>
 
 <div style="text-align:center">
-<img src="/Images/RCL's Motel Computers Z80-68000 system setup.jpg" alt="" style="width:70%; height:auto;">
+<img src="/Images/Lotharek SD Floppy Emulator.jpg" alt="" style="width:70%; height:auto;">
 </div>
 
 ## The Simplest and Quickest Explanation
