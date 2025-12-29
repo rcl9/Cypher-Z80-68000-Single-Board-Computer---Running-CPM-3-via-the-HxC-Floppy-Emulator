@@ -8,6 +8,7 @@ A much longer and more complex explanation details how to generate a "cyphboot.i
 <img src="/Images/Lotharek SD Floppy Emulator with Motel Computers SBC.jpg" alt="" style="width:70%; height:auto;">
 </div>
 
+
 <div style="text-align:center">
 <img src="/Images/Lotharek SD Floppy Emulator.jpg" alt="" style="width:70%; height:auto;">
 </div>
