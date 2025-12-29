@@ -1,0 +1,100 @@
+;
+; This CP/M submit script is used to make the Cypher 68k CP/M system track (boot) and the cpm3.sys file. 
+;
+; After this script is done you'll get cpm3.sys and systrks.img
+
+era cpm3.sys
+era copysys.com
+era cpmldr.com
+era systrks.img
+
+; If you want to make the non-banked CP/M3 system:
+;	1) Change 'banked' to false in bioskrnl.asm and boot.asm
+;	
+;	2) You will need to run 'gencpm' and answer No to loading up defaults and Yes to writing out a new file. Then select options for non-banked.
+;
+;	3) Choose the proper linker line below for 'bios3[os]'
+ 
+RMAC BIOSKRNL
+RMAC BOOT
+RMAC CHARIO
+RMAC DISKIO3
+RMAC RDISK3
+RMAC MOVE
+RMAC DRVTBL
+RMAC hdisk3
+
+; RCL, note: 'bnkbios' is actually a renamed copy of 'bioskrnl.rel' but compiled with the 'banked' flag set
+link bnkbios3[b]=bnkbios,scb,boot,chario,move,drvtbl,rdisk3,diskio3,hdisk3
+; Non-banked version
+;link bios3[os]=bioskrnl,scb,boot,chario,move,drvtbl,rdisk3,diskio3,hdisk3
+
+; GENCPM creates the banked CPM3.SYS file from the RESBDOS3.SPR file, the 
+; BNKBDOS3.SPR file, and your customized BNKBIOS3.SPR file. The defaults come from gencpm.dat
+; 
+; And the non-banked from:
+; BNKBDOS3 = CPMBDOS3.ASM = CPMBDOS2.ASM, CONBDOS.ASM, BDOS30.ASM
+GENCPM auto display
+
+; Now we will have cpm3.sys
+
+; ----------------------------
+
+;	Command procedure to build the COPYSYS utility.  This utility will
+;	load the system tracks either from a file (if the filename is given
+;	as an argument in the command tail) or from the system tracks of an
+;	existing disk.
+;
+; rmac copysys $$pz
+; link copysys
+
+; ----------------------------
+
+; Command procedure to build the image file of the system tracks
+; containing the CP/M Plus (tm Digital Research) system cold boot
+; loader.
+;
+; Buiding the system tracks for a different format disk can be done by
+; completing the following steps...
+;	1) Edit CBOOT.MAC and change the number of sectors per track
+;		(one side only) and the sector size.
+;	2) Edit LDRBIOS.ASM and change the disk format definition equates
+;		to true for the desired format.  It is very easy to add other
+;		formats, refer to the CP/M Plus documentation for a description
+;		of how to use the macros for building the disk tables.
+;	3) Edit COPYSYS.ASM (renamed to LOADSYS.ASM here) and change the
+;		sector size, LOG2(sector size), number of sectors and number
+;		of system tracks (only 1 used).  Assemble and link using
+;		RMAC COPYSYS and
+;		LINK LOADSYS=COPYSYS.
+;	4) Edit this command procedure to read in CBOOT.COM to the start of
+;		the first sector (automatically goes to 0100) and CPMLDR.COM
+;		to the start of the second sector (add a bias of one sector
+;		size).
+;	5) Submit this command procedure.
+;
+rmac ldrbios $$pz
+; rmac cpmldr.mac $$pz
+link cpmldr[l100]=cpmldr,ldrbios
+
+m80 =cboot
+link cboot
+
+era systrks.img
+
+sid
+<f100,6000,00
+<rcboot.com
+<rcpmldr.com,400
+<wsystrks.img,100,20FF
+<
+
+;
+;loadsys systrks.img
+;
+
+; Write back to the Windows host directory as binary. "a:w" is the Yaze-AG emulator's CP/M file write program
+a:w tmp/cpm3.sys b
+a:w tmp/systrks.img b 
+
+; After this, copy these two files to the 'cypher_boot_disk_contents' directory and then run "makedisk.bat"

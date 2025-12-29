@@ -1,0 +1,19 @@
+# This is the Motel Computers 1k sector file format
+#
+# 2k block size, 8 sectors / track, 1k sectors, skew 3, 128 directory entries,
+# 2 reserved system tracks
+# Use OS = 2.2 so that date stamps and directory labels are not placed in the directory table
+# RCL, I change the # of directory entries from 64 to 128 on Dec 22 2017 only because that was listed in diskio3.asm of the Cypher source code
+
+diskdef cypher
+  seclen 1024
+  tracks 77
+  sectrk 8
+  blocksize 2048
+  maxdir 64
+  skew 3
+  boottrk 2
+  os 2.2
+end
+
+
