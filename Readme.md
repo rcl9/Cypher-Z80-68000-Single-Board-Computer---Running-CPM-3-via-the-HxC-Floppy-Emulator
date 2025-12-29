@@ -1,10 +1,10 @@
-## How to Boot CP/M-3 from the HxC Floppy Emulator on the Cypher Z80/68000 SBC
+# How to Boot CP/M-3 from the HxC Floppy Emulator on the Cypher Z80/68000 SBC
 
 This file explains how to boot from CP/M-3 via the HxC Floppy Emulator attached to the floppy disk controller interface connector of the 1985-era [Motel Computers Cypher Z80/68000 SBC](https://github.com/rcl9/Cypher-Z80-68000-Single-Board-Computer-1984-by-Motel-Computers---History-and-Documentation). This will allow the Cypher SBC to boot from the floppy emulator rather than its stock 8" floppy disks or 5MB hard disk. 
 
 A much longer and more complex explanation details how to generate a "cyphboot.img" disk image file from the original CP/M-3 Z80 source files .
 
-# The Simplest and Quickest Explanation
+## The Simplest and Quickest Explanation
 
 - Unzip and copy all of the files from the *Hxc_SDCARD_Contents_For_Cypher_Boot.zip* to the SDCARD to be used with the HxC emulator.
 
@@ -16,7 +16,7 @@ A much longer and more complex explanation details how to generate a "cyphboot.i
 
 - And that's all you need to do or know!
 
-# How to compile CP/M-3 to "cpm3.sys" and "systrks.img" from Cypher Source Files
+## How to compile CP/M-3 to "cpm3.sys" and "systrks.img" from Cypher Source Files
 
 - You will first and foremost want to set up a good CP/M-3 emulation environment on your computer. Fortunately I had spent considerable time to create a "Dream come true" CP/M-3 working environment for the Yaze-AG emulator. I've been very happy with using Yaze-AG to run CP/M-3 except that it can run out of memory if you mount too many disk images. I will not include those related Yaze-AG files herein to keep my repository on the simpler side.
 
@@ -45,7 +45,7 @@ gencpm.dat      hdisk3.asm      ldrbios.asm     ldrbiosk.asm    ldrdrvtb.asm    
 loadsys.com     move.asm        rdisk3.asm      rldrbios.asm    rmac.com        scb.asm
 ```
 
-- In this GitHub repository I am providing my own versions of boot.asm, diskio3.asm and drvtbl.asm which I had modified back in the day for (1) Cypher/Sorcerer 8" floppies on drives A and B, (2) 80-track 5-1/4" Piped-Piper on drive C, (4) 40-track Morrow on drive D, (5) a RAM disk on drive E and (6) Two 11MB hard disk partitions on drives F and G.
+- In this GitHub repository I am providing my own versions of boot.asm, diskio3.asm, drvtbl.asm and hdisk3.asm which I had modified back in the day for (1) Cypher/Sorcerer 8" floppies on drives A and B, (2) 80-track 5-1/4" Piped-Piper on drive C, (4) 40-track Morrow on drive D, (5) a RAM disk on drive E and (6) Two 11MB hard disk partitions on drives F and G.
 
 - In the following explanation the files to be copied to/from the Windows environment will be first copied to the "tmp" sub-directory residing within the Yaze-AG home directory folder.
 
@@ -53,7 +53,7 @@ loadsys.com     move.asm        rdisk3.asm      rldrbios.asm    rmac.com        
 
 - Likewise, copy "rcl-cpm.sub" to Drive D0:
 
-- Optionally copy over and replace my personally modified files: boot.asm, diskio3.asm and drvtbl.asm.
+- Optionally copy over and replace my personally modified files: boot.asm, diskio3.asm, drvtbl.asm and hdisk3.asm.
 
 - Read over the info at the top of *rcl-cpm3.sub* file for general reference. 
 
@@ -70,7 +70,7 @@ loadsys.com     move.asm        rdisk3.asm      rldrbios.asm    rmac.com        
 
 - Run "*makedisk.bat*" in the "*cypher_boot_disk_contents*" directory to create the CP/M-3 boot disk image file "*cyphboot.img*". If you want to add more CP/M runtime files to the CP/M disk then do so in this batch file. 
 
-# How to Set up the HxC Floppy Emulator Disk Image
+## How to Set up the HxC Floppy Emulator Disk Image
 
 - The HxC floppy emulator is set up as Drive A for the Cypher SBC.
 
