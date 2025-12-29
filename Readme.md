@@ -1,6 +1,6 @@
 ## How to Boot CP/M-3 from the HxC Floppy Emulator on the Cypher Z80/68000 SBC
 
-This file explains how to boot from CP/M-3 via the HxC Floppy Emulator attached to the floppy disk controller interface connector of the 1985-era Motel Computers Cypher Z80/68000 SBC((https://github.com/rcl9/Cypher-Z80-68000-Single-Board-Computer-1984-by-Motel-Computers---History-and-Documentation). This will allow the Cypher SBC to boot from the floppy emulator rather than its stock 8" floppy disks or 5MB hard disk. 
+This file explains how to boot from CP/M-3 via the HxC Floppy Emulator attached to the floppy disk controller interface connector of the 1985-era [Motel Computers Cypher Z80/68000 SBC](https://github.com/rcl9/Cypher-Z80-68000-Single-Board-Computer-1984-by-Motel-Computers---History-and-Documentation). This will allow the Cypher SBC to boot from the floppy emulator rather than its stock 8" floppy disks or 5MB hard disk. 
 
 A much longer and more complex explanation details how to generate a "cyphboot.img" disk image file from the original CP/M-3 Z80 source files .
 
